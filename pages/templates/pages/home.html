@@ -1,0 +1,22 @@
+{% extends "pages/base.html" %} 
+
+{% block title %} 
+Home
+{% endblock %} 
+
+{% block content %} 
+
+<div class="jumbotron">
+    <h1 class="display-4">Newspaper app</h1>
+    <p class="lead">This newspaper app is built using Django.</p>
+    <p class="lead">
+        <a class="btn btn-primary btn-lg" href="/viewarticles" role="button">View All Articles</a>
+    </p>
+</div>
+{% if user.is_authenticated %} 
+    <p>Hello there, {{user.username}}!</p>
+    <p><a href="/logout">Logout</a></p>
+{% else %}
+    <p>You are not logged in. <a href="/login">Login</a> or <a href="/signup">Sign Up</a>.</p>
+{% endif %}
+{% endblock %}

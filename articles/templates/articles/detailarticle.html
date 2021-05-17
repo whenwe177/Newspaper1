@@ -1,0 +1,38 @@
+{% extends "pages/base.html" %} 
+
+{% block title %}
+{{article.title}} 
+{% endblock %}
+
+{% block content %}
+<div class="article-entry">
+    <h2>{{article.title}}</h2>
+
+    <p>by {{article.author}} | {{article.date}}</p>
+    <p>{{article.body}}</p>
+
+    {% if user == article.author %} 
+        <p><a href="/article/{{article.id}}/edit">Edit</a> | <a href="/article/{{article.id}}/delete">Delete</a></p>
+    {% endif %}
+
+    <p><a href="/viewarticles">Back to all articles</a></p>
+    
+    <div class="card-footer">
+        <p>Comments:</p>
+        {% for comment in lst %}
+            <p>
+                <span class="fw-bold">{{comment.author}}</span> | 
+                {{comment}}
+                
+            
+
+            {% if user == comment.author %}
+                <span class="stupidthingwontgotoright"><a href="/article/comment/{{comment.id}}/edit">Edit</a></span>
+            {% endif %}
+            </p>
+        {% endfor %}
+        
+        <p><a href="/article/{{article.id}}/addcomment">+ New Comment</a></p>
+    </div>
+</div>
+{% endblock %}
